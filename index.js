@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const Post = require("./api/models/posts.js");
 const postsData = new Post(); 
+var cors = require('cors')
+app.use(cors())
 // console.log(typeof Post);
 
 // const posts = [{
@@ -11,12 +13,20 @@ const postsData = new Post();
 //     "post_image": "uploads/post-image-1581461442199.jpg",
 //     "added_date": "1581461442206"
 // }]
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+// })
+app.use('/uploads',express.static('uploads'));
 
+app.get("/",(req,res) =>{
+    
+    res.send(postsData.get());
+});
 app.get("/api/posts",(req,res) =>{
-    const test = {
-        testing: "abar dekhi"
-    }
-    postsData.add(test); 
+    // const test = {
+    //     testing: "abar dekhi"
+    // }
+    // postsData.add(); 
     res.send(postsData.get());
 });
 

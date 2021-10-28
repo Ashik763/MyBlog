@@ -1,1 +1,10 @@
-[{"testing":"abar dekhi","id": "1"},{"testing":"abar dekhi"},{"testing":"abar dekhi"},{"testing":"abar dekhi"},{"testing":"testing"}]
+
+  
+[
+  { "id": "2322","title":"this is the first","content":"this is the content", "post_image": "uploads/a.jpg" , "added_date": "1635402199529"  },
+  { "id": "2322","title":"this is the first","content":"this is the content", "post_image": "uploads/a.jpg" , "added_date": "1635402199529"  },
+  { "id": "2322","title":"this is the first","content":"this is the content", "post_image": "uploads/a.jpg" , "added_date": "1635402199529"  },
+  { "id": "2322","title":"this is the first","content":"this is the content", "post_image": "uploads/a.jpg" , "added_date": "1635402199529"  },
+  { "id": "2322","title":"this is the first","content":"this is the content", "post_image": "uploads/a.jpg" , "added_date": "1635402199529"  }
+
+]
