@@ -1,7 +1,7 @@
 const PATH = "./data.json";
 const fs = require('fs');
 
-// console.log(fs);
+
 
 
 class Posts {
