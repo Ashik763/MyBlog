@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const port = 3000
 const Post = require("./api/models/posts.js");
 const postsData = new Post(); 
 var cors = require('cors')
@@ -73,6 +74,4 @@ app.post("/api/posts",upload.single("post-image") ,(req,res) =>{
 
 
 
-app.listen(3000,() => {
-    console.log("listening");
-})
+app.listen(process.env.PORT || port)
