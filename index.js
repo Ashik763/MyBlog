@@ -3,7 +3,34 @@ const app = express();
 const Post = require("./api/models/posts.js");
 const postsData = new Post(); 
 var cors = require('cors')
-app.use(cors())
+app.use(cors());
+var multer = require('multer')
+var storage = multer.diskStorage({
+    destination:function(req,file,cb){
+        cb(null,'./uploads')
+
+    },
+    filename:function(req,file,cb){
+        cb(null,`${file.fieldname}-${Date.now()}${getExt(file.mimetype)}`)
+    }
+})
+
+
+const getExt = (mimeType) => {
+    switch (mimeType) {
+        case "image/png":
+            return ".png";
+           
+        case "image/jpeg":
+            return ".jpeg";    
+    }
+}
+
+
+var upload = multer({storage:storage})
+
+
+app.use(express.json());
 // console.log(typeof Post);
 
 // const posts = [{
@@ -19,6 +46,7 @@ app.use(cors())
 app.use('/uploads',express.static('uploads'));
 
 app.get("/",(req,res) =>{
+    console.log(postsData.get());
     
     res.send(postsData.get());
 });
@@ -40,6 +68,25 @@ app.get("/api/posts/:post_id",(req,res) =>{
     else{
         res.status(404).send("Not Found")
     }
+})
+
+app.post("/api/posts",upload.single("post-image") ,(req,res) =>{
+    // console.log(req.body);
+    // console.log(req.file);
+    console.log(req.file);
+    console.log(req.file.path);
+    // res.send("ok");
+    const newPost = {
+        "id" : `${Date.now()}`,
+        "title" : req.body.title,
+        "content": req.body.content,
+        "post_image": req.file.path,
+        "added_date" : `${Date.now()}`
+
+    }
+    console.log(newPost);
+    postsData.add(newPost);
+    res.status(201).send("ok");
 })
 
 

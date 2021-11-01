@@ -28,7 +28,7 @@ class Posts {
         let rawdata = fs.readFileSync(PATH)
         // console.log(rawdata);
         let posts = JSON.parse(rawdata);
-        console.log(posts);
+        // console.log(posts);
         return posts;
 
     }
